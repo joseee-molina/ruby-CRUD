@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     def show
         #byebug #put this and use it to debug
         # for example, print params
-        @article = Article.find(params[:id])
+        @articleToShow = Article.find(params[:id])
     end
 
     def index
@@ -15,7 +15,12 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        render plain: params[:article]
+        #render plain: params[:article]
+        #this render is going to show the params
+        #in a blank page
+        @newArticle = Article.new(params.require(:article).permit(:title,:description))
+        @newArticle.save
+        redirect_to article_path(@newArticle)
     end
 
 end
