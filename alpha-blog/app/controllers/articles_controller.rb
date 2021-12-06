@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
 
     def show
-        #byebug put this and use it to debug
+        #byebug #put this and use it to debug
+        # for example, print params
         @article = Article.find(params[:id])
     end
 
