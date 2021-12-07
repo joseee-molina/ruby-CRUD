@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    #it can find an article automatically for those methods, so that they
+    #do not have to find it again
 
     def show
         #byebug #put this and use it to debug
@@ -23,7 +26,8 @@ class ArticlesController < ApplicationController
         #render plain: params[:article]
         #this render is going to show the params
         #in a blank page
-        @newArticle = Article.new(params.require(:article).permit(:title,:description))
+        @newArticle = Article.new(article_params)
+        #article_params is a function returning the params
         #filling new article with the fields of new
         if @newArticle.save
             flash[:notice] = "Article was created succesfully!!"
@@ -36,7 +40,7 @@ class ArticlesController < ApplicationController
 
     def update
         @articleToEdit = Article.find(params[:id])
-        if @articleToEdit.update(params.require(:article).permit(:title, :description))
+        if @articleToEdit.update(article_params)
                 #filling edited article with the fields of new
 
             flash[:notice] = "Article was edited succesfully!!"
@@ -47,11 +51,24 @@ class ArticlesController < ApplicationController
         end
     end
 
+    
     def destroy
         @articleToDelete = Article.find(params[:id])
         @articleToDelete.destroy
         redirect_to articles_path
 
     end
+
+    private 
+    def set_article
+        @someArticle = Article.find(params[:id])
+    end
+    #esto es para refactorizar un articulo
+    def article_params
+        params.require(:article).permit(:title, :description)
+    end
+    #remember that in ruby the last thing in a function is tha thing
+    #that gets returned, which is super important, because here the type
+    #doesn't matter too much
 
 end
