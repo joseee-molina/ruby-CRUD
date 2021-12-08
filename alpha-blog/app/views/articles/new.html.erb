@@ -1,38 +1,39 @@
+<div id="page-content">
+    <h1 class = "text-center mt-4">Create a new article </h1>
 
-<h1>Create a new article </h1>
+    <!-- Check if there are any errors, show error message here!! -->
 
-<!-- Check if there are any errors, show error message here!! -->
+    <% if @newArticle.errors.any? %>
+        <h2> The following errors prevented the article from being saved properly</h2>
+        <% @newArticle.errors.full_messages.each do |msg| %>
+            <%= msg %>
+            <br>
+        <% end %>
 
-<% if @newArticle.errors.any? %>
-    <h2> The following errors prevented the article from being saved properly</h2>
-    <% @newArticle.errors.full_messages.each do |msg| %>
-        <%= msg %>
-        <br>
     <% end %>
 
-<% end %>
 
+    <%= form_with scope: :article, url: articles_path, local: true do |f| %>
 
-<%= form_with scope: :article, url: articles_path, local: true do |f| %>
+        <p>  
+            <%= f.label :title %>
+            <br>
+            <%= f.text_field :title %>
 
-    <p>  
-        <%= f.label :title %>
-        <br>
-        <%= f.text_field :title %>
-
-    </p>
-    <p>  
-        <%= f.label :description %>
-        <br>
-        <%= f.text_area :description %>
+        </p>
+        <p>  
+            <%= f.label :description %>
+            <br>
+            <%= f.text_area :description %>
+            
+        </p>
         
-    </p>
-    
-    <p>
-        <%= f.submit %>
-        <!-- When we click submit, it takes us to the controller ot the create action-->
-    </p>
+        <p>
+            <%= f.submit %>
+            <!-- When we click submit, it takes us to the controller ot the create action-->
+        </p>
 
-<% end %>
+    <% end %>
 
-<%= link_to 'Back', articles_path %>
+    <%= link_to 'Back', articles_path %>
+</div>
