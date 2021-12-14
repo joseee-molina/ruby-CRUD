@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
 
     def edit
         @articleToEdit = Article.find(params[:id])
+        #finding article by id in the url
     end
 
     def create
