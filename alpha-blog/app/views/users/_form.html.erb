@@ -5,7 +5,7 @@
  <!----  check errors here-->
  <% if @user.errors.any? %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <h4 class="alert-heading">The following errors prevented the article from being saved</h4>
+        <h4 class="alert-heading">The following errors prevented the User from being saved</h4>
         <ul>
         <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+          <%= f.submit "Sign up", class: "btn btn-outline-light btn-lg" %>
         </div>
       <% end %>
     </div>
