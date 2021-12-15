@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
     def edit
         @articleToEdit = Article.find(params[:id])
         #finding article by id in the url
+        #params is the url decomposed or sth
     end
 
     def create
