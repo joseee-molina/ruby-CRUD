@@ -8,6 +8,7 @@
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
             by <%= @articleToShow.user.username if @articleToShow.user %>
+            <%= link_to gravatar_for(@articleToShow.user), user_path(@articleToShow.user) %>
           </div>
           <div class="card-body">
             <div class="card-text text-left"><%= simple_format(@articleToShow.description) %></div>
