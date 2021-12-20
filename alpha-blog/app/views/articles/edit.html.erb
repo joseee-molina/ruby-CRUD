@@ -5,11 +5,11 @@
 
     <div class="container">
         
-        <% if @articleToEdit.errors.any? %>
+        <% if @article.errors.any? %>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <h4 class="alert-heading">The following errors prevented the article from being saved</h4>
                 <ul>
-                <% @articleToEdit.errors.full_messages.each do |msg| %>
+                <% @article.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
                 <% end %>
                 </ul>
@@ -22,7 +22,7 @@
 
         <div class="row justify-content-center">
             <div class="col-10">
-                <%= form_with(model: @articleToEdit, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+                <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
                     <div class="form-group row">
                         <%= f.label :title, class: "col-2 col-form-label text-light" %>
                         <div class="col-10">
