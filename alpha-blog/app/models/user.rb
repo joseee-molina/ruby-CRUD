@@ -4,7 +4,7 @@ class User < ApplicationRecord
     #this is to change the state of the email before saving it
     #so that it is downcase
 
-    has_many :articles
+    has_many :articles, dependent: :destroy
     
     validates :username, uniqueness: true, 
                         presence: true, 
