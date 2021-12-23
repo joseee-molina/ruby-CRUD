@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
     end
     #esto es para refactorizar un articulo
     def article_params
-        params.require(:article).permit(:title, :description)
+        params.require(:article).permit(:title, :description, category_ids:[] )
     end
     #remember that in ruby the last thing in a function is tha thing
     #that gets returned, which is super important, because here the type
