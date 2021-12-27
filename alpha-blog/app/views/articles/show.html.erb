@@ -9,6 +9,9 @@
           <div class="card-header font-italic">
             by <%= @articleToShow.user.username if @articleToShow.user %>
             <%= link_to gravatar_for(@articleToShow.user), user_path(@articleToShow.user) %>
+            <% if @article.categories.any? %>
+              <div class ="mt-2"><%= render @article.categories %> </div> 
+            <%end%>
           </div>
           <div class="card-body">
             <div class="card-text text-left"><%= simple_format(@articleToShow.description) %></div>

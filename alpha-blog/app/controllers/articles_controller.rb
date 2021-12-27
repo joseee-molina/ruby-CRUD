@@ -5,18 +5,14 @@ class ArticlesController < ApplicationController
     before_action :require_user, except: [:index, :show]
     before_action :require_same_user, only: [:edit, :update, :destroy]
 
-
-
     def show
         #byebug #put this and use it to debug
         # for example, print params
         @articleToShow = Article.find(params[:id])
-
     end
 
     def index
         @allArticles = Article.paginate(page: params[:page], per_page: 5 )
-        
     end
     
     def new
