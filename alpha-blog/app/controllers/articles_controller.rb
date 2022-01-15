@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    require 'aws-sdk-lambda'  # v2: require 'aws-sdk'
+    require 'json'
     before_action :set_article, only: [:show, :edit, :update, :destroy]
     #it can find an article automatically for those methods, so that they
     #do not have to find it again
@@ -12,7 +14,19 @@ class ArticlesController < ApplicationController
     end
 
     def index
+        configs = Aws.config.update(region: 'us-east-1')
+        client = Aws::Lambda::Client.new(configs)
+        req_payload = {:key => 'value'}
+        payload = JSON.generate(req_payload)
+        resp = client.invoke({
+            function_name: 'helloWorldFunction',
+            invocation_type: 'RequestResponse',
+            payload: payload
+          })
+        resp_payload = JSON.parse(resp.payload.string)
+        @stringified_payload = resp_payload
         @allArticles = Article.paginate(page: params[:page], per_page: 5 )
+        #call lambda function here
     end
     
     def new
