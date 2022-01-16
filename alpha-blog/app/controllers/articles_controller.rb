@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
         resp_payload = JSON.parse(resp.payload.string)
         @stringified_payload = resp_payload
         @allArticles = Article.paginate(page: params[:page], per_page: 5 )
-        #call lambda function here
+        #call lambda function here, thanks heber for your help
     end
     
     def new
